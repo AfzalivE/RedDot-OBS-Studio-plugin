@@ -1,11 +1,14 @@
 #include <obs-module.h>
 #include <thread>
 
+#include "RtssInterface.h"
+
 static bool isShowingDot = false;
 static bool shouldShowDot = true;
 
 struct RedDotStruct {
 	std::thread DotThread;
+	RtssInterface* rtss;
 
 	void mainLoop();
 	bool isStreaming();
@@ -31,6 +34,7 @@ OBS_DECLARE_MODULE();
 #endif
 
 bool obs_module_load(void) {
+	blog(LOG_DEBUG, "Loading RTSS Interface");
 	blog(LOG_DEBUG, "Loading RedDot");
 	RedDotObj = new RedDotStruct;
 	RedDotObj->Start();
@@ -77,6 +81,7 @@ void RedDotStruct::mainLoop() {
 
 void RedDotStruct::Start() {
 	blog(LOG_DEBUG, "Start()");
+	RedDotObj->rtss = new RtssInterface();
 	RedDotObj->DotThread = std::thread([]() {
 		RedDotObj->mainLoop();
 	});
@@ -84,6 +89,7 @@ void RedDotStruct::Start() {
 
 void RedDotStruct::Stop() {
 	blog(LOG_DEBUG, "Stop()");
+	free(RedDotObj->rtss);
 	if (DotThread.joinable()) {
 		DotThread.join();
 	}
@@ -104,10 +110,12 @@ void RedDotStruct::showDot() {
 	blog(LOG_DEBUG, "Show dot");
 	isShowingDot = true;
 	shouldShowDot = false;
+	RedDotObj->rtss->showDot();
 }
 
 void RedDotStruct::hideDot() {
 	blog(LOG_DEBUG, "Hide dot");
 	isShowingDot = false;
 	shouldShowDot = true;
+	RedDotObj->rtss->hideDot();
 }
