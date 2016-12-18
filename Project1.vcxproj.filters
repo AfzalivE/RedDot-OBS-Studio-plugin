@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="red-dot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RtssInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,6 +22,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RedDot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

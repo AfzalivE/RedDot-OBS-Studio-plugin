@@ -48,7 +48,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\corex\Documents\GitHub\obs-studio\libobs;C:\Users\corex\Documents\GitHub\obs-studio\build\config;C:\Users\corex\Documents\GitHub\obs-studio\build\RedDot\rtss_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\corex\Documents\GitHub\obs-studio\libobs;C:\Users\corex\Documents\GitHub\obs-studio\UI\obs-frontend-api;C:\Users\corex\Documents\GitHub\obs-studio\build\config;C:\Users\corex\Documents\GitHub\obs-studio\build\RedDot\rtss_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -109,13 +109,16 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GroupedString.cpp" />
-    <ClCompile Include="red-dot.cpp" />
+    <ClCompile Include="RedDot.cpp" />
     <ClCompile Include="RtssInterface.cpp" />
     <ClCompile Include="StdAfx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libobs\libobs.vcxproj">
       <Project>{b4fbadbd-0bd4-3596-959b-07ab9b9b6ca4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\UI\obs-frontend-api\obs-frontend-api.vcxproj">
+      <Project>{582ceff4-89a6-30ec-8952-0d03ff55de87}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
